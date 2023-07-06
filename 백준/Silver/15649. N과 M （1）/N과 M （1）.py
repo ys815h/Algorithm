@@ -1,20 +1,20 @@
-from collections import deque
+N, M = map(int, input().strip().split(' '))
 
-N, M = map(int,input().split())
+alist = [a for a in range(1, N+1)]
 
-st = deque()
-# 재귀함수
-def dfs(N, M):
+st = []
 
-    if len(st) == M:
-        print(*st)
-        return  # 마지막으로 실행된 함수 종료 이제 그 위로 올라감
+def dfs():
     
-    for i in range(1, N+1):
+    if len(st) == M:
+        
+        print(' '.join(map(str, st)))
+        return
 
+    
+    for i in alist:
         if i not in st:
             st.append(i)
-            dfs(N, M)
-            # print와 return 이후 여기로 와서 진행됨
+            dfs()
             st.pop()
-dfs(N, M)
+dfs()
