@@ -1,0 +1,4 @@
+--  아이디와 이름, 날짜를 조회 -> 아이디 순으로 조회
+
+SELECT ANIMAL_ID, NAME, TO_CHAR(DATETIME, 'YYYY-MM-DD') AS 날짜 FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
