@@ -1,0 +1,12 @@
+-- 상품코드 별 매출액(판매가 * 판매량) 합계를 출력 (매출액을 기준으로 내림차순, 상품코드를 기준으로 오름차순)
+-- 상품 아이디로 조인
+-- 상품코드 뿐만 아니라 가격도 같이 묶어야 하니 GROUP BY 에 금액도 추가한다
+
+-- SELECT * FROM PRODUCT
+-- SELECT * FROM OFFLINE_SALE
+
+SELECT P.PRODUCT_CODE, P.PRICE*SUM(S.SALES_AMOUNT) AS SALES
+FROM PRODUCT P JOIN OFFLINE_SALE S
+ON P.PRODUCT_ID = S.PRODUCT_ID
+GROUP BY P.PRODUCT_CODE, P.PRICE
+ORDER BY SALES DESC, P.PRODUCT_CODE
