@@ -1,13 +1,13 @@
--- ANIMAL_ID	NAME	중성화(SEX_UPON_INTAKE) -> 아이디 순으로 조회하
--- 조건 1. Neutered Male OR Spayed Female 있으면 O, 아니면 X
+-- ANIMAL_ID	NAME	중성화 조회
+-- ANIMAL_ID 순으로 조회
+-- 중성화가 되어있다면 'O', 아니면'X'
+
 -- SELECT * FROM ANIMAL_INS
+-- ORDER BY ANIMAL_ID
 
-
-SELECT ANIMAL_ID, NAME
-, DECODE(SEX_UPON_INTAKE, 'Neutered Male', 'O'
-         , DECODE(SEX_UPON_INTAKE, 'Spayed Female', 'O', 'X')) AS 중성화
+SELECT ANIMAL_ID, NAME, CASE
+ WHEN SEX_UPON_INTAKE LIKE 'Neutered%' or SEX_UPON_INTAKE LIKE 'Spayed%' THEN 'O'
+ ELSE 'X'
+END AS "중성화"
 FROM ANIMAL_INS
 ORDER BY ANIMAL_ID
-
--- SELECT * FROM ANIMAL_INS
--- WHERE SEX_UPON_INTAKE = 'Intact Male'
