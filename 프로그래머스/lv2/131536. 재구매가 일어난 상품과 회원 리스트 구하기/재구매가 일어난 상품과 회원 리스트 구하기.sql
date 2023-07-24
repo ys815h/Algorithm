@@ -1,0 +1,14 @@
+-- 조건 1. 동일한 회원이 동일한 상품을 재구매한 데이터
+-- USER_ID  PRODUCT_ID 조회
+-- 회원 ID를 기준으로 오름차순 정렬, 상품 ID를 기준으로 내림차순 정렬
+
+-- SELECT * FROM ONLINE_SALE
+-- ORDER BY USER_ID
+
+-- 119
+
+SELECT USER_ID, PRODUCT_ID
+FROM ONLINE_SALE
+GROUP BY USER_ID, PRODUCT_ID
+HAVING COUNT(PRODUCT_ID) >= 2
+ORDER BY USER_ID, PRODUCT_ID DESC
