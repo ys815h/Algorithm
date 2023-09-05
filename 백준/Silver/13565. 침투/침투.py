@@ -4,18 +4,19 @@
 
 
 import sys
+input = sys.stdin.readline
 sys.setrecursionlimit(10**9)
 from collections import deque
 
 dx = [0, 1, 0, -1]
 dy = [-1, 0, 1, 0]
 
-M, N = map(int, input().split())
+M, N = map(int, input().strip().split())
 visit = [[0]*N for _ in range(M)]
 
 graph = []
 for _ in range(M):
-    graph.append(list(map(int, input())))
+    graph.append(list(map(int, input().strip())))
 
 def bfs(x, y):
     q = deque()
