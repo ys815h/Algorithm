@@ -1,20 +1,26 @@
-N, M = map(int, input().split())
+# 15654 N과 M (5) (실버 3)
 
-array = list(map(int,input().split()))
+# import sys
+# input = sys.stdin.readline
+# sys.setrecursionlimit(10**6)
+# from collections import deque
 
-array.sort()
+N, M = map(int, input().strip().split())
+arr = list(map(int, list(input().strip().split())))
+visit = [0 for _ in range(N)]
+arr.sort()
 st = []
 
-def dfs():
+def dfs(v):
     if len(st) == M:
         print(*st)
         return
-    
-
-    for i in range(len(array)):
-
-        if array[i] not in st:
-            st.append(array[i])
-            dfs()
+    for i in range(N):
+        if visit[i] == 0:
+            visit[i] = 1
+            st.append(arr[i])
+            dfs(i)
             st.pop()
-dfs()
+            visit[i] = 0
+    return
+dfs(0)
