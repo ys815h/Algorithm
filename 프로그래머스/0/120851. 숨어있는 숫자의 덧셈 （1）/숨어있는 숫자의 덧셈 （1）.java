@@ -6,9 +6,7 @@ class Solution {
         for (int i=0; i<arr.length; i++) {
             try {
                 answer += Integer.parseInt(arr[i]);
-            } catch (Exception ex) {
-                continue;
-            }
+            } catch (Exception e) {}
             
         }
         
