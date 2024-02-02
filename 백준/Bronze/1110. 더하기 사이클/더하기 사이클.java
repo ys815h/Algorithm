@@ -10,22 +10,6 @@
 
 //첫째 줄에 N이 주어진다. N은 0보다 크거나 같고, 99보다 작거나 같은 정수이다.
 
-
-//26
-//4
-
-//55
-//3
-
-//1
-//60
-
-//0
-//1
-
-//71
-//12
-
 import java.io.*;
 import java.util.*;
 
@@ -34,20 +18,32 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		int count = 1;
 		int start = Integer.parseInt(br.readLine());
-		int sum = 0;
-		int cycle = 0;
-		sum = start%10 + start/10;
-		cycle = (start%10)*10 + sum%10;
+//		int count = 1;
+//		int sum = 0;
+//		int cycle = 0;
+//		sum = start%10 + start/10;
+//		cycle = (start%10)*10 + sum%10;
 		
-		while (cycle != start) {
-			count++;
-			sum = cycle%10 + cycle/10;
-			cycle = (cycle%10)*10 + sum%10;
-		}
-		
-		bw.write(count + "\n");
+//		while (cycle != start) {
+//			count++;
+//			sum = cycle%10 + cycle/10;
+//			cycle = (cycle%10)*10 + sum%10;
+//		}
+//		
+//		bw.write(count + "\n");
+	
+		bw.write(DFS(1, (start%10)*10 + (start%10+start/10)%10, start) + "\n");
 		bw.close();
+	}
+	
+	public static int DFS(int cnt, int cycle, int ans) {
+		if (ans == cycle) {
+			return cnt;
+		} else {
+			cycle = (cycle%10)*10 + (cycle%10 + cycle/10)%10;
+			cnt++;
+		}
+		return DFS(cnt, cycle, ans);
 	}
 }
