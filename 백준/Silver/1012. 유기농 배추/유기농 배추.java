@@ -14,11 +14,12 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		t = Integer.parseInt(br.readLine());
 		for (int i=0; i<t; i++) {
-			cnt = 0;
 			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 			n = Integer.parseInt(st.nextToken());
 			m = Integer.parseInt(st.nextToken());
 			k = Integer.parseInt(st.nextToken());
+			// 도출할 값, 지도, 방문처리 초기화
+			cnt = 0;
 			map = new int[m][n];
 			visited = new boolean[m][n];
 			
