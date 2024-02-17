@@ -2,11 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-	
-	static StringBuilder sb = new StringBuilder();
 	static int node, line, s, e, start, cnt;
 	static int[][] graph;
 	static boolean[] visited;
+	static Queue<Integer> q = new LinkedList<>();
 	
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +25,13 @@ public class Main {
 			graph[s][e] = e;
 			graph[e][s] = s;
 		}
-		dfs(start);
+//		dfs(start);
+//		System.out.println("dfs풀이법");
+//		System.out.println(cnt);
+//		visited = new boolean[node + 1];
+//		cnt = 0;
+		bfs(start);
+//		System.out.println("bfs풀이법");
 		System.out.println(cnt);
 	}
 	public static void dfs(int s) {
@@ -34,13 +39,25 @@ public class Main {
 		for (int i=1; i<=node; i++) {
 			if(graph[s][i] != 0 && !visited[i]) {
 				cnt ++;
-				visited[i] = true;
 				dfs(i);
 			}
-			
 		}
+	}
+	public static void bfs(int s) {
+		visited[s] = true;
+		q.offer(s);
 		
-		
+		while(!q.isEmpty()) {
+			start = q.poll();
+			
+			for (int i=1; i<=node; i++) {
+				if(graph[start][i] != 0 && !visited[i]) {
+					cnt++;
+					visited[i] = true;
+					q.offer(i);
+				}
+			}
+		}
 	}
 	
 }
